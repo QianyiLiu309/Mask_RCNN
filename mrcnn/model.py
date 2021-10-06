@@ -2339,8 +2339,10 @@ class MaskRCNN(object):
         callbacks = [
             keras.callbacks.TensorBoard(log_dir=self.log_dir,
                                         histogram_freq=0, write_graph=True, write_images=False),
+	    keras.callbacks.EarlyStopping(monitor='val_loss', min_delta=0, patience=20, verbose=1, mode='min', restore_best_weights=True),
 #             keras.callbacks.ModelCheckpoint(self.checkpoint_path,
 #                                             verbose=0, save_weights_only=True),
+		
         ]
 
         # Add custom callbacks to the list
